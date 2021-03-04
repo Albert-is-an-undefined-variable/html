@@ -1,7 +1,8 @@
 <?php include('server.php')?>
 <?php
-  session_start();
-
+  if(!isset($_SESSION)) {
+          session_start();
+  }
   if (!isset($_SESSION['username'])) {
   	$_SESSION['msg'] = "You must log in first";
   	header('location: login.php');
@@ -43,41 +44,41 @@
         </form>
     </div>
 
-<!-- navigation bar -->
-    <nav class="navbar navbar-default navbar-fixed-top">
-  <div class="container">
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <a class="navbar-brand" href="index.php">Tidy tubes</a>
+  <!-- navigation bar -->
+  <nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="index.php">Tidy tubes</a>
+      </div>
+      <div class="collapse navbar-collapse" id="myNavbar">
+        <ul class="nav navbar-nav navbar-right">
+            <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" data-toggle="dropdown" data-target="dropdown_target" href="">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-bell-fill" viewBox="0 0 16 16">
+                    <path d="M8 16a2 2 0 0 0 2-2H6a2 2 0 0 0 2 2zm.995-14.901a1 1 0 1 0-1.99 0A5.002 5.002 0 0 0 3 6c0 1.098-.5 6-2 7h14c-1.5-1-2-5.902-2-7 0-2.42-1.72-4.44-4.005-4.901z"/>
+              </svg>
+              <span class="num">4</span>
+              <span class="caret"></span> </a>
+          <div class="dropdown-menu" aria-labelledby="dropdown_target">
+                <a class "dropdown-item" href="#"></a> <br>
+              <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" data-toggle="dropdown" data-target="dropdown_target" href="">MY PROFILE
+              <span class="caret"></span> </a>
+          <div class="dropdown-menu" aria-labelledby="dropdown_target">
+              <a class "dropdown-item" href="#">Setings</a> <br>
+              <a class "dropdown-item" href="index.php?logout='1'" style="color: red;">Log Out</a>
+          </div>
+          </li>
+          <li><a href="#services">PROJECTS</a></li>
+          <li><a href="#pricing">REQUESTS</a></li>
+          <li><a href="contact.html">CONTACT US!</a></li>
+        </ul>
+      </div>
     </div>
-    <div class="collapse navbar-collapse" id="myNavbar">
-      <ul class="nav navbar-nav navbar-right">
-          <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" data-toggle="dropdown" data-target="dropdown_target" href="">
-              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-bell-fill" viewBox="0 0 16 16">
-                  <path d="M8 16a2 2 0 0 0 2-2H6a2 2 0 0 0 2 2zm.995-14.901a1 1 0 1 0-1.99 0A5.002 5.002 0 0 0 3 6c0 1.098-.5 6-2 7h14c-1.5-1-2-5.902-2-7 0-2.42-1.72-4.44-4.005-4.901z"/>
-            </svg>
-            <span class="num">4</span>
-            <span class="caret"></span> </a>
-        <div class="dropdown-menu" aria-labelledby="dropdown_target">
-              <a class "dropdown-item" href="#"></a> <br>
-            <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" data-toggle="dropdown" data-target="dropdown_target" href="">MY PROFILE
-            <span class="caret"></span> </a>
-        <div class="dropdown-menu" aria-labelledby="dropdown_target">
-            <a class "dropdown-item" href="#">Setings</a> <br>
-            <a class "dropdown-item" href="index.php?logout='1'" style="color: red;">Log Out</a>
-        </div>
-        </li>
-        <li><a href="#services">PROJECTS</a></li>
-        <li><a href="#pricing">REQUESTS</a></li>
-        <li><a href="contact.html">CONTACT US!</a></li>
-      </ul>
-    </div>
-  </div>
-</nav>
+  </nav>
 
 
 
@@ -195,7 +196,7 @@
                       <div class="col-12">
                           <div class="section-title title-left text-center text-lg-left">
                               <h3 class="top-sep">Meet Our Team</h3>
-                              <p>You can explore our personal websites or social netwroks to know us better! <h6>...ejem.ejem..stalker..ejem</h6></p>
+                              <p>You can explore our personal websites or social networks to know us better! <h6>...ejem.ejem..stalker..ejem</h6></p>
                           </div>
                       </div>
                   </div>
@@ -218,7 +219,7 @@
                                         </svg></a>
                                       </span>
                                   <span class="img-holder d-inline-block">
-                                          <img src="lili.png" alt="Team">
+                                          <img src="img/lili.png" alt="Team">
                                       </span>
                               </div>
                               <div class="team-content">
@@ -245,7 +246,7 @@
                                         </svg></a>
                                       </span>
                                   <span class="img-holder d-inline-block">
-                                          <img src="Albert.jpeg" alt="Team">
+                                          <img src="img/Albert.jpeg" alt="Team">
                                       </span>
                               </div>
                               <div class="team-content">
@@ -272,7 +273,7 @@
                                         </svg></a>
                                       </span>
                                   <span class="img-holder d-inline-block">
-                                          <img src="joana.png" alt="Team">
+                                          <img src="img/joana.png" alt="Team">
                                       </span>
                               </div>
                               <div class="team-content">
