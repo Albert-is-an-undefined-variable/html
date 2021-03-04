@@ -23,3 +23,14 @@ show tables;
 #if you want to see the data in one specific column write...
 
 select name_column from name_table;
+
+
+
+# create table 'cells':
+
+CREATE TABLE cells(
+id       INTEGER       NOT NULL AUTO_INCREMENT PRIMARY KEY,
+username VARCHAR(100)  NOT NULL,
+email    VARCHAR(100)  NOT NULL,
+password VARCHAR(100)  NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 ;
