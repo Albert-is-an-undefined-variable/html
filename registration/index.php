@@ -1,6 +1,8 @@
 <?php include('server.php')?>
 <?php
-  session_start();
+  if(!isset($_SESSION)) {
+          session_start();
+      }
 
   if (!isset($_SESSION['username'])) {
   	$_SESSION['msg'] = "You must log in first";
@@ -195,7 +197,7 @@
                       <div class="col-12">
                           <div class="section-title title-left text-center text-lg-left">
                               <h3 class="top-sep">Meet Our Team</h3>
-                              <p>You can explore our personal websites or social netwroks to know us better! <h6>...ejem.ejem..stalker..ejem</h6></p>
+                              <p>You can explore our personal websites or social networks to know us better! <h6>...ejem.ejem..stalker..ejem</h6></p>
                           </div>
                       </div>
                   </div>
@@ -218,7 +220,7 @@
                                         </svg></a>
                                       </span>
                                   <span class="img-holder d-inline-block">
-                                          <img src="lili.png" alt="Team">
+                                          <img src="img/lili.png" alt="Team">
                                       </span>
                               </div>
                               <div class="team-content">
@@ -245,7 +247,7 @@
                                         </svg></a>
                                       </span>
                                   <span class="img-holder d-inline-block">
-                                          <img src="Albert.jpeg" alt="Team">
+                                          <img src="img/Albert.jpeg" alt="Team">
                                       </span>
                               </div>
                               <div class="team-content">
@@ -272,7 +274,7 @@
                                         </svg></a>
                                       </span>
                                   <span class="img-holder d-inline-block">
-                                          <img src="joana.png" alt="Team">
+                                          <img src="img/joana.png" alt="Team">
                                       </span>
                               </div>
                               <div class="team-content">
