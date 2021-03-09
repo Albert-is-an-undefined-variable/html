@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>New Entry</title>
+	<title>Search</title>
 	<link rel="shortcut icon" href="img/tube.png">
 	<link rel="stylesheet" type="text/css" href="index.css">
 		<!-- <link rel="stylesheet" type="text/css" href="estilo.css"> -->
@@ -53,17 +53,13 @@
          <h1>New Search</h1>
          <p>Give us some hints and we're going to find what you need</p>
      </div>
-     <form action="search.php" method="post">
+     <form name="formsearch" action="search.php" method="get">
        <div class="input-group">
-         <label>Sample name: </label>
-         <input type="text" name="search" value="">
-       </div>
-       <div class="input-group">
-         <label>Choose a freezer: </label>
-
-       </div>
-       <div class="input-group">
-   	  	<button type="submit" class="btn" name="reg_entry">search</button>
+        <label>Sample name: </label>
+        <input type="text" name="search" value="">
+			</div>
+			<div class="input-group">
+   	  	<button type="submit" class="btn" name="submit">Search</button>
    		</div>
 
 </form>
@@ -71,9 +67,27 @@
  </html>
 
  <?php
+
+	// COMMENT BY LILI:
+	// In the following I tried to make some code running but didn't succeed (all the commented part below) The code that is not commented is still by Jo :)
+
+	// $button = $_GET['submit'];
+	// $search = $_GET['search'];
+	//
+	// $searchname = "SELECT * FROM Sample WHERE MATCH(Name) AGAINST ('%" . $search . "%')";
+	//
+	// $run = mysqli_query($db, $searchname);
+	// $foundnumber = mysqli_num_rows($run);
+	//
+	// if ($foundnumber==0) {
+	// 	echo "No entry was found to match your Search term of '<b>$search</b>.";
+	// } else {
+	// 	echo "<h1><strong> $foundnumber Entries matched four Search for \"" .$search."\"<strong></h1>";
+	// }
+
  if (isset($_POST['reg_entry'])) {
  $search_value=$_POST["search"];
- $con=new mysqli("localhost","root","welcome123","registration");
+ $con=new mysqli("localhost","tidytubes","Welcome123%","mydb");
  if($con->connect_error){
      echo 'Connection Faild: '.$con->connect_error;
      }else{

@@ -5,9 +5,10 @@ session_start();
 $username = "";
 $email    = "";
 $errors = array();
+$samplename = $celltype = $idfreezer = $rack = $position = $amount = $frozendate = $availability = '';
 
 // connect to the database
-$db = mysqli_connect('localhost', 'root', 'welcome123', 'registration');
+$db = mysqli_connect('localhost', 'tidytubes', 'Welcome123%', 'mydb');
 
 // REGISTER USER
 if (isset($_POST['reg_user'])) {
@@ -30,7 +31,7 @@ if (isset($_POST['reg_user'])) {
 
   // first check the database to make sure
   // a user does not already exist with the same username and/or email
-  $user_check_query = "SELECT * FROM users WHERE username='$username' OR email='$email' LIMIT 1";
+  $user_check_query = "SELECT * FROM User WHERE Username='$username' OR Email='$email' LIMIT 1";
   $result = mysqli_query($db, $user_check_query);
   $user = mysqli_fetch_assoc($result);
 
@@ -48,7 +49,7 @@ if (isset($_POST['reg_user'])) {
   if (count($errors) == 0) {
   	$password = md5($password_1);//encrypt the password before saving in the database
 
-  	$query = "INSERT INTO users (username, email, password)
+  	$query = "INSERT INTO User (Username, Email, Password)
   			  VALUES('$username', '$email', '$password')";
   	mysqli_query($db, $query);
   	$_SESSION['username'] = $username;
@@ -72,7 +73,7 @@ if (isset($_POST['login_user'])) {
 
   if (count($errors) == 0) {
   	$password = md5($password);
-  	$query = "SELECT * FROM users WHERE username='$username' AND password='$password'";
+  	$query = "SELECT * FROM Users WHERE Username='$username' AND Password='$password'";
   	$results = mysqli_query($db, $query);
   	if (mysqli_num_rows($results) == 1) {
   	  $_SESSION['username'] = $username;
@@ -86,14 +87,17 @@ if (isset($_POST['login_user'])) {
 
 
 // NEW ENTRY
+// COMMENT LILI:
+// The following runs for me but nothing gets stored in the Table Samples...
+
 if (isset($_POST['reg_entry'])) {
   // receive all input values from the entry form
   $samplename = mysqli_real_escape_string($db, $_POST['samplename']);
   $celltype = mysqli_real_escape_string($db, $_POST['celltype']);
-  $idfreezer = mysqli_real_escape_string($db, $_POST['idfreezer']);
+  // $idfreezer = mysqli_real_escape_string($db, $_POST['idfreezer']);
   $rack = mysqli_real_escape_string($db, $_POST['rack']);
   $position = mysqli_real_escape_string($db, $_POST['position']);
-  $amount = mysqli_real_escape_string($db, $_POST['amount']);
+  // $amount = mysqli_real_escape_string($db, $_POST['amount']);
   $frozendate = mysqli_real_escape_string($db, $_POST['frozendate']);
   $availability = mysqli_real_escape_string($db, $_POST['availability']);
   $comment = mysqli_real_escape_string($db, $_POST['comment']);
@@ -106,17 +110,14 @@ if (isset($_POST['reg_entry'])) {
   if (empty($rack)) { array_push($errors, "Rack is required"); }
   if (empty($position)) { array_push($errors, "Position is required"); }
   if (empty($amount)) { array_push($errors, "Amount is required"); }
-  if (empty($frozendate)) { array_push($errors, "Frozen date is required"); }
+  if (empty($frozendate)) { array_push($errors, "Date is required"); }
 
   // Finally, add the new entry in the sample table
   if (count($errors) == 0) {
-  	$query = "INSERT INTO sample (samplename, celltype, idfreezer, rack, position, amount, frozendate, availability, comment)
-  			  VALUES('$samplename', '$celltype', '$idfreezer', '$rack', '$position', '$amount', '$frozendate', '$availability', '$comment')";
+  	$query = "INSERT INTO Sample (Name, Cell_type, Rack, Position, Frozendate, Availability, Comment)
+  			  VALUES('$samplename', '$celltype', '$rack', '$position', '$frozendate', '$availability', '$comment')";
   	mysqli_query($db, $query);
-
   }
 }
-
-
 
 ?>
